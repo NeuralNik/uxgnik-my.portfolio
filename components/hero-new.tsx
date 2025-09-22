@@ -37,40 +37,8 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 pt-32 sm:pt-28 md:pt-20 pb-20 sm:pb-16 overflow-hidden bg-gradient-to-br from-background via-background to-background/95"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 pt-32 sm:pt-28 md:pt-20 pb-20 sm:pb-16 overflow-hidden"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-foreground/20 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-        
-        {/* Gradient Orbs */}
-        <div 
-          className="absolute w-96 h-96 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-full blur-3xl opacity-30 animate-pulse"
-          style={{
-            transform: `translate(${mousePosition.x * 0.02 + animationOffset.x}px, ${mousePosition.y * 0.02 + animationOffset.y}px)`,
-          }}
-        />
-        <div 
-          className="absolute w-72 h-72 bg-gradient-to-r from-green-500/10 via-yellow-500/10 to-orange-500/10 rounded-full blur-2xl opacity-20 animate-pulse right-0 bottom-0"
-          style={{
-            transform: `translate(${mousePosition.x * -0.01 + animationOffset.x * -0.5}px, ${mousePosition.y * -0.01 + animationOffset.y * -0.5}px)`,
-            animationDelay: '1s',
-          }}
-        />
-      </div>
-
       {/* Portfolio Year */}
       <div
         className={`absolute top-32 left-6 md:left-12 transition-all duration-1000 delay-500 ${

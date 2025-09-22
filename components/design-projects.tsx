@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { ExternalLink, Calendar, Users, ArrowUpRight, Palette, Monitor, Smartphone, Globe } from "lucide-react"
+import { ThreeSceneLight } from "./three/three-scene"
 
 interface DesignProject {
   id: number
@@ -148,6 +149,9 @@ export function DesignProjects() {
       id="design-projects"
       className="relative py-20 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 overflow-hidden"
     >
+      {/* 3D Background for this section - temporarily disabled */}
+      {/* <ThreeSceneLight className="opacity-30" /> */}
+      
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background opacity-50"></div>
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-foreground/2 to-foreground/1 rounded-full blur-3xl"></div>
