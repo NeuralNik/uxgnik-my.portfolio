@@ -1,28 +1,16 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero-new"
-import { Projects } from "@/components/projects"
-import { DesignProjects } from "@/components/design-projects"
+import { Header } from "@/components/header-inkgames"
+import { Hero } from "@/components/hero-inkgames"
+import { Projects } from "@/components/projects-inkgames"
 import { Blog } from "@/components/blog"
 import { Contact } from "@/components/contact-new"
-import dynamic from "next/dynamic"
-
-// Dynamically import 3D components to avoid SSR issues
-const AdaptiveThreeScene = dynamic(() => import("@/components/three/adaptive-three-scene").then(mod => ({ default: mod.AdaptiveThreeScene })), {
-  ssr: false,
-  loading: () => null
-})
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background relative">
-      {/* 3D Background */}
-      <AdaptiveThreeScene />
-      
+    <main className="min-h-screen bg-black relative">
       <div className="relative z-10">
         <Header />
         <Hero />
         <Projects />
-        <DesignProjects />
         <Blog />
         <Contact />
       </div>

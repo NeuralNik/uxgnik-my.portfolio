@@ -1,57 +1,134 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
-import Image from "next/image"
-import { ArrowUpRight, Sparkles } from "lucide-react"
+import { useEffect, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [animationOffset, setAnimationOffset] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 300)
     return () => clearTimeout(timer)
   }, [])
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
-
-  // Automatic animation for background elements
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimationOffset(prev => ({
-        x: Math.sin(Date.now() * 0.001) * 30,
-        y: Math.cos(Date.now() * 0.0008) * 20,
-      }))
-    }, 100)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 pt-32 sm:pt-28 md:pt-20 pb-20 sm:pb-16 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-32 pb-20 overflow-hidden"
     >
-      {/* Portfolio Year */}
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto text-center">
+        
+        {/* Portfolio Badge */}
+        <div
+          className={`inline-block mb-8 transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <span className="inline-block px-4 py-2 text-xs font-medium tracking-[0.3em] text-foreground/60 border border-foreground/20 rounded-full">
+            PORTFOLIO 2024
+          </span>
+        </div>
+
+        {/* Main Headline - Bold and Uppercase like inkgames */}
+        <div
+          className={`mb-12 transition-all duration-1200 delay-500 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none uppercase">
+            <span className="block text-white">CRAFTING THE</span>
+            <span className="block text-white">NEXT GENERATION</span>
+            <span className="block bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
+              OF DIGITAL
+            </span>
+          </h1>
+        </div>
+
+        {/* Subtitle */}
+        <div
+          className={`mb-16 transition-all duration-1000 delay-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <p className="text-xl md:text-2xl font-light text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            Hi, I'm <span className="text-white font-medium">Sagnik Pal</span> — 
+            a creative developer passionate about building innovative web experiences 
+            that push the boundaries of what's possible.
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div
+          className={`flex flex-col sm:flex-row items-center justify-center gap-6 mb-20 transition-all duration-1000 delay-900 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <Button
+            className="group relative overflow-hidden bg-white text-black hover:bg-gray-100 px-8 py-4 text-lg font-medium tracking-wide transition-all duration-300 hover:scale-105"
+            onClick={() => {
+              const projectsElement = document.getElementById("projects");
+              if (projectsElement) {
+                projectsElement.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              EXPLORE MY WORK
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+            </span>
+          </Button>
+          
+          <Button
+            variant="outline"
+            className="group border-2 border-white/20 text-white hover:border-white hover:bg-white/5 px-8 py-4 text-lg font-medium tracking-wide transition-all duration-300"
+            asChild
+          >
+            <a
+              href="https://drive.google.com/file/d/1BoVtwvqrPiA335PnR76xTPJjz-UEutNO/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              VIEW RESUME
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+            </a>
+          </Button>
+        </div>
+
+        {/* Skills Tags */}
+        <div
+          className={`flex items-center justify-center gap-4 flex-wrap transition-all duration-1000 delay-1100 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          {['REACT', 'NEXT.JS', 'TYPESCRIPT', 'DESIGN', 'AI/ML'].map((skill, index) => (
+            <span
+              key={skill}
+              className="px-3 py-1 text-xs font-medium tracking-wider text-gray-400 border border-gray-600 rounded-full"
+              style={{ animationDelay: `${1200 + index * 100}ms` }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
       <div
-        className={`absolute top-32 left-6 md:left-12 transition-all duration-1000 delay-500 ${
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1300 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <div className="relative">
-          <span className="text-sm font-light text-muted-foreground tracking-[0.2em]">PORTFOLIO</span>
-          <div className="absolute -right-6 top-0">
-            <Sparkles className="w-3 h-3 text-muted-foreground animate-pulse" />
-          </div>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-medium tracking-widest text-gray-500">SCROLL</span>
+          <div className="w-px h-16 bg-gradient-to-b from-gray-500 to-transparent"></div>
         </div>
       </div>
+    </section>
+  )
+}
 
       {/* Scroll Indicator */}
       <div
