@@ -80,6 +80,13 @@ export function Header() {
           </button>
           <span className="text-muted-foreground text-xs sm:text-sm">/</span>
           <button
+            onClick={() => scrollToSection("design-projects")}
+            className="text-xs sm:text-sm tracking-wider hover:text-foreground/70 transition-all duration-300 hover:scale-105 px-1 py-1 sm:px-2 sm:py-1"
+          >
+            DESIGN
+          </button>
+          <span className="text-muted-foreground text-xs sm:text-sm">/</span>
+          <button
             onClick={() => scrollToSection("blog")}
             className="text-xs sm:text-sm tracking-wider hover:text-foreground/70 transition-all duration-300 hover:scale-105 px-1 py-1 sm:px-2 sm:py-1"
           >
