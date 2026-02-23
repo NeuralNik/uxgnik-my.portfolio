@@ -91,7 +91,7 @@ const BoundedGridEffect: React.FC<BoundedGridEffectProps> = ({
         gridTemplateRows: `repeat(${gridRows}, 1fr)`,
         gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
         border: '2px solid rgba(255,255,255,0.25)',
-        borderRadius: '12px',
+        borderRadius: '0px',
         overflow: 'hidden',
         zIndex: 1,
         boxShadow: '0 0 0 1px rgba(255,255,255,0.1), inset 0 0 0 1px rgba(255,255,255,0.05)',

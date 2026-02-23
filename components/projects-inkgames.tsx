@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -54,6 +54,8 @@ const projects = [
 export function Projects() {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,8 +71,26 @@ export function Projects() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect()
+        setMousePosition({
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100,
+        })
+      }
+    }
+
+    const sectionElement = sectionRef.current
+    if (sectionElement) {
+      sectionElement.addEventListener('mousemove', handleMouseMove)
+      return () => sectionElement.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
   return (
-    <section id="projects" className="py-32 px-6 md:px-12 bg-black">
+    <section ref={sectionRef} id="projects" className="py-32 px-6 md:px-12 bg-black">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
@@ -81,10 +101,37 @@ export function Projects() {
             </span>
           </div>
           
-          <h2 className="text-5xl md:text-7xl font-bold text-white text-center mb-8 tracking-tight uppercase">
-            DEFINING THE NEXT
-            <br />
-            <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-7xl font-bold text-center mb-8 tracking-tight uppercase relative">
+            <span 
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500"
+              style={{
+                backgroundImage: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
+                  #ffffff 0%, 
+                  #f3f4f6 25%, 
+                  #d1d5db 50%, 
+                  #9ca3af 75%, 
+                  #6b7280 100%)`,
+                backgroundSize: '200% 200%',
+                animation: 'liquidFlow 3s ease-in-out infinite',
+                transition: 'background-position 0.3s ease-out'
+              }}
+            >
+              DEFINING THE NEXT
+            </span>
+            <span 
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500"
+              style={{
+                backgroundImage: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
+                  #f3f4f6 0%, 
+                  #d1d5db 25%, 
+                  #9ca3af 50%, 
+                  #6b7280 75%, 
+                  #ffffff 100%)`,
+                backgroundSize: '200% 200%',
+                animation: 'liquidFlow 3s ease-in-out infinite 0.5s',
+                transition: 'background-position 0.3s ease-out'
+              }}
+            >
               GENERATION OF CODE
             </span>
           </h2>
