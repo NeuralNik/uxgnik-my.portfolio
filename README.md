@@ -186,5 +186,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **GitHub**: [your-github-profile]
 
 ---
-
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
